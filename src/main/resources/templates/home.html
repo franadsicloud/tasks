@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">	
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+	<div class="container">
+	<h2>Gestor de Tarefas</h2>
+
+	<form action="/adicionar" method="post">
+		<label for="fname">Nome da Tarefa:</label><br>
+		<input type="text" id="nomeTarefa" name="nomeTarefa"> 
+		<input type="submit" class="btn btn-success" value="Adicionar">
+	</form>
+
+	<table class="table table-striped mt-3">
+		<tr>
+			<th>Nome Tarefa</th>
+			<th>Status</th>
+			<th>Data início</th>
+			<th>Data fim</th>
+			<th>Ações</th>
+			
+		</tr>
+		<tr th:each = "tarefa : ${tarefas}">
+			<td th:text="${tarefa.nomeTarefa}"></td>
+			<td th:text="${tarefa.status}"></td>
+			<td th:text="${tarefa.dataInicio}"></td>
+			<td th:text="${tarefa.dataFim}"></td>
+			<td>
+				<a th:href="@{/editar/{id}(id =${tarefa.id})}" class="btn btn-secondary">Editar</a>
+				<a th:href="@{/encerrar/{id}(id =${tarefa.id})}" class="btn btn-warning" >Encerrar</a>
+				<a th:href="@{/excluir/{id}(id =${tarefa.id})}" class="btn btn-danger">Excluir</a>
+			</td>
+		</tr>
+		
+	</table>
+  </div>
+</body>
+</html>
