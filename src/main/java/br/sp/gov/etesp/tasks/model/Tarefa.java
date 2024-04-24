@@ -1,20 +1,27 @@
 package br.sp.gov.etesp.tasks.model;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+
+
 @Entity
 public class Tarefa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;	
+	private Long id;
+	
+	@NotBlank(message = "User's name cannot be empty.")
+	 @Size(min = 5, max = 250)
 	private String nomeTarefa;	
+	
 	private String status;
 	private LocalDate dataInicio;
 	private LocalDate dataFim;

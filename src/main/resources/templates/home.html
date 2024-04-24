@@ -9,9 +9,9 @@
 	<div class="container">
 	<h2>Gestor de Tarefas</h2>
 
-	<form action="/adicionar" method="post">
+	<form th:action="@{/adicionar}"  method="post"  >	                                        
 		<label for="fname">Nome da Tarefa:</label><br>
-		<input type="text" id="nomeTarefa" name="nomeTarefa"> 
+		<input type="text" id="nomeTarefa" name="nomeTarefa"  required>		                                                     
 		<input type="submit" class="btn btn-success" value="Adicionar">
 	</form>
 
@@ -26,9 +26,9 @@
 		</tr>
 		<tr th:each = "tarefa : ${tarefas}">
 			<td th:text="${tarefa.nomeTarefa}"></td>
-			<td th:text="${tarefa.status}"></td>
-			<td th:text="${tarefa.dataInicio}"></td>
-			<td th:text="${tarefa.dataFim}"></td>
+			<td th:text="${tarefa.status}"></td>						
+			<td th:text="${#temporals.format(tarefa.dataInicio, 'dd-MM-yyyy')}"></td>			
+			<td th:text="${#temporals.format(tarefa.dataFim, 'dd-MM-yyyy')}"></td>
 			<td>
 				<a th:href="@{/editar/{id}(id =${tarefa.id})}" class="btn btn-secondary">Editar</a>
 				<a th:href="@{/encerrar/{id}(id =${tarefa.id})}" class="btn btn-warning" >Encerrar</a>
